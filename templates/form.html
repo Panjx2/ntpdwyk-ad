@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocena ryzyka cukrzycy</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        label { font-weight: bold; }
+        input { width: 100%; padding: 6px; margin-bottom: 10px; }
+        .unit { font-size: 0.9em; color: gray; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Formularz oceny ryzyka cukrzycy</h2>
+    <form action="/predict" method="post">
+
+        <label>Ciąże (ile razy byłaś w ciąży):</label>
+        <input type="number" name="Pregnancies" placeholder="np. 2" required>
+
+        <label>Glukoza (na czczo):</label>
+        <div class="unit">mg/dL (np. 120)</div>
+        <input type="number" name="Glucose" placeholder="np. 120" required>
+
+        <label>Ciśnienie krwi (spoczynkowe):</label>
+        <div class="unit">mmHg (np. 70)</div>
+        <input type="number" name="BloodPressure" placeholder="np. 70" required>
+
+        <label>Grubość skóry (fałd tricepsu):</label>
+        <div class="unit">mm (np. 25)</div>
+        <input type="number" name="SkinThickness" placeholder="np. 25" required>
+
+        <label>Insulina (na czczo):</label>
+        <div class="unit">μU/ml (np. 80)</div>
+        <input type="number" name="Insulin" placeholder="np. 80" required>
+
+        <label>BMI (wskaźnik masy ciała):</label>
+        <div class="unit">kg/m² (np. 28.5)</div>
+        <input type="number" step="0.1" name="BMI" placeholder="np. 28.5" required>
+
+        <label>Wskaźnik dziedziczności:</label>
+        <div class="unit">bez jednostki (np. 0.45)</div>
+        <input type="number" step="0.01" name="DiabetesPedigreeFunction" placeholder="np. 0.45" required>
+
+        <label>Wiek:</label>
+        <div class="unit">lata (np. 35)</div>
+        <input type="number" name="Age" placeholder="np. 35" required>
+
+        <input type="submit" value="Oceń ryzyko">
+    </form>
+
+    {% if prediction %}
+        <h3>Wynik: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
